@@ -14,6 +14,8 @@ import {
   IonIcon,
 } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
+import { Preferences } from '@capacitor/preferences';
+
 import { IntroComponent } from '../../components/intro/intro.component';
 
 @Component({
@@ -39,11 +41,20 @@ import { IntroComponent } from '../../components/intro/intro.component';
   ],
 })
 export class LoginPage implements OnInit {
-  introSeen = false;
+  introSeen = true;
+  INTRO_KEY = 'intro-seen';
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.checkStorage();
+  }
+
+  async checkStorage() {
+    const seen = await Preferences.get({ key: this.INTRO_KEY });
+    console.log('🚀 ~ file: login.page.ts:51 ~ checkStorage ~ seen:', seen);
+    this.introSeen = seen.value === 'true';
+  }
 
   doLogin() {
     console.log('doLogin');
@@ -52,5 +63,11 @@ export class LoginPage implements OnInit {
   onFinish() {
     console.log('onFinish');
     this.introSeen = true;
+    Preferences.set({ key: this.INTRO_KEY, value: 'true' });
   }
+
+  seeIntroAgain = () => {
+    this.introSeen = false;
+    Preferences.remove({ key: this.INTRO_KEY });
+  };
 }

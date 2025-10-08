@@ -30,9 +30,13 @@
           <ion-icon name="log-in-outline" slot="end"></ion-icon>
         </ion-button>
 
-
         <ion-button routerLink="/register" color="secondary" expand="block" class="ion-margin-top">
           Create an account
+          <ion-icon name="person-circle-outline" slot="end"></ion-icon>
+        </ion-button>
+
+        <ion-button (click)="seeIntroAgain()" fill="clear" size="small" color="medium" type="button" expand="block" class="ion-margin-top">
+          Watch intro again
           <ion-icon name="person-circle-outline" slot="end"></ion-icon>
         </ion-button>
       </form>
