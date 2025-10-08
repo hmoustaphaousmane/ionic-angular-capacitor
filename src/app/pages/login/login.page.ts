@@ -15,6 +15,11 @@ import {
 } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { Preferences } from '@capacitor/preferences';
+import {
+  NavController,
+  LoadingController,
+  ToastController,
+} from '@ionic/angular';
 
 import { IntroComponent } from '../../components/intro/intro.component';
 
@@ -44,7 +49,11 @@ export class LoginPage implements OnInit {
   introSeen = true;
   INTRO_KEY = 'intro-seen';
 
-  constructor() {}
+  constructor(
+    private navCtr: NavController,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController
+  ) {}
 
   ngOnInit() {
     this.checkStorage();
@@ -56,8 +65,44 @@ export class LoginPage implements OnInit {
     this.introSeen = seen.value === 'true';
   }
 
-  doLogin() {
-    console.log('doLogin');
+  async doLogin() {
+    // create loading spinner
+    const loading = await this.loadingCtrl.create({
+      message: 'Logging in...',
+      spinner: 'crescent',
+    });
+    await loading.present(); // present loading spinner
+
+    try {
+      console.log('doLogin');
+      // simulate login (api call)
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // conditionally show success or error
+      const loginSuccess = true; // TODO: change logic accord login status (after backend implementation)
+      if (loginSuccess) {
+        await this.presentToast('Connexion réussie', 'success');
+        // this.router.navigate(['app']);
+        this.navCtr.navigateRoot('/app');
+      } else {
+        await this.presentToast('Identifiants invalides', 'danger');
+      }
+    } catch (err) {
+      console.error(err);
+      await this.presentToast('Une erreur est survenue', 'warning');
+    } finally {
+      await loading.dismiss(); // dismiss loading spinner
+    }
+  }
+
+  private async presentToast(message: string, color: string) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2500,
+      position: 'bottom',
+      color,
+    });
+    await toast.present();
   }
 
   onFinish() {
