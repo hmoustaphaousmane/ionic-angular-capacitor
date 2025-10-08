@@ -1,19 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonFooter,
-  IonCard,
-  IonCardContent,
-  IonInput,
-  IonButton,
-  IonIcon,
-} from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonFooter, IonCard, IonCardContent, IonInput, IonButton, IonIcon, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
+import { Router, RouterLink } from '@angular/router';
 import { Preferences } from '@capacitor/preferences';
 import {
   NavController,
@@ -43,7 +32,10 @@ import { IntroComponent } from '../../components/intro/intro.component';
     RouterLink,
     IonIcon,
     IntroComponent,
-  ],
+    IonGrid,
+    IonRow,
+    IonCol
+],
 })
 export class LoginPage implements OnInit {
   introSeen = true;

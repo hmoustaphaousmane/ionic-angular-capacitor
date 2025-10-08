@@ -1,20 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonIcon,
-  IonFooter,
-  IonButton,
-  IonCard,
-  IonCardContent,
-  IonInput,
-  IonButtons,
-  IonBackButton,
-} from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonIcon, IonFooter, IonButton, IonCard, IonCardContent, IonInput, IonButtons, IonBackButton, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-register',
@@ -36,7 +23,10 @@ import {
     IonInput,
     IonButtons,
     IonBackButton,
-  ],
+    IonGrid,
+    IonRow,
+    IonCol
+],
 })
 export class RegisterPage implements OnInit {
   constructor(private _location: Location) {}
