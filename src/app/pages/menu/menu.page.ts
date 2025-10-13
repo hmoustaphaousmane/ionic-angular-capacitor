@@ -1,17 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonMenu,
-  IonRouterOutlet,
-  IonItem,
-  IonLabel,
-  IonIcon,
-} from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonMenu, IonRouterOutlet, IonItem, IonLabel, IonIcon, IonButton } from '@ionic/angular/standalone';
 import { homeOutline, newspaperOutline } from 'ionicons/icons';
 import {
   NavigationEnd,
@@ -38,7 +28,8 @@ import {
     CommonModule,
     FormsModule,
     RouterLink,
-  ],
+    IonButton
+],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MenuPage implements OnInit {

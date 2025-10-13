@@ -4,8 +4,11 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   logInOutline,
+  logOutOutline,
   personCircleOutline,
   checkmarkDoneOutline,
+  triangle,
+  ellipse
 } from 'ionicons/icons';
 
 @Component({
@@ -15,6 +18,6 @@ import {
 })
 export class AppComponent {
   constructor() {
-    addIcons({ logInOutline, personCircleOutline, checkmarkDoneOutline });
+    addIcons({ logInOutline, logOutOutline, personCircleOutline, checkmarkDoneOutline, triangle, ellipse });
   }
 }

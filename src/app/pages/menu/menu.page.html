@@ -12,8 +12,14 @@
     <ion-menu contentId="menu-content" menuId="menu-content" side="start" type="overlay">
       <ion-header>
         <ion-toolbar color="secondary">
-          <ion-title>Awesome avocado menu</ion-title>
+          <ion-title>
+            <img src="assets/ath.svg" alt="Logo" height="24" />
+            &nbsp; Menu
+          </ion-title>
         </ion-toolbar>
+        <!-- <ion-toolbar color="secondary">
+          <ion-title>Menu</ion-title>
+        </ion-toolbar> -->
       </ion-header>
       <ion-content class="ion-padding">
         <ion-list>
@@ -25,6 +31,13 @@
             </ion-item>
           </ion-menu-toggle>
           }
+
+          <ion-menu-toggle>
+            <ion-button expand="block" routerLink="/" routerDirection="root" routerLinkActive="selected">
+              <ion-icon slot="start" name="log-out-outline"></ion-icon>
+              <ion-label>Logout</ion-label>
+            </ion-button>
+          </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>
