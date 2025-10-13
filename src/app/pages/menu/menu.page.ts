@@ -13,7 +13,12 @@ import {
   IonIcon,
 } from '@ionic/angular/standalone';
 import { homeOutline, newspaperOutline } from 'ionicons/icons';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -37,14 +42,25 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MenuPage implements OnInit {
+  pageTitle = 'Menu';
   paths = [
     { name: 'Home', url: '/app/list', icon: homeOutline },
     { name: 'Settings', url: '/app/settings', icon: newspaperOutline },
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
+    // set page title dynamically
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.url.includes('/list')) this.pageTitle = 'List';
+        else if (event.url.includes('/settings')) {
+          if (event.url.includes('/tab1')) this.pageTitle = 'Tab 1';
+          else if (event.url.includes('/tab2')) this.pageTitle = 'Tab 2';
+          else this.pageTitle = 'Settings';
+        } else this.pageTitle = 'Menu';
+      }
+    });
   }
-
 }

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
@@ -10,6 +11,7 @@ import {
   selector: 'app-intro',
   templateUrl: './intro.component.html',
   styleUrls: ['./intro.component.scss'],
+  imports: [CommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // add CUSTOM_ELEMENTS_SCHEMA (enables to swiper-container in template)
 })
 export class IntroComponent implements OnInit {
