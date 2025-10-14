@@ -8,7 +8,18 @@ import {
   IonToolbar,
   IonButtons,
   IonMenuButton,
+  IonButton,
+  IonIcon,
+  IonSearchbar,
+  IonCard,
+  IonCardContent,
+  IonItem,
+  IonLabel,
+  IonAvatar,
+  IonChip,
 } from '@ionic/angular/standalone';
+import { HttpClient } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -24,10 +35,46 @@ import {
     IonMenuButton,
     CommonModule,
     FormsModule,
+    IonButton,
+    IonIcon,
+    IonSearchbar,
+    IonCard,
+    IonCardContent,
+    IonItem,
+    IonLabel,
+    IonAvatar,
+    IonChip,
   ],
 })
 export class ListPage implements OnInit {
-  constructor() {}
+  users: any[] = [];
+  loading: boolean = true;
 
-  ngOnInit() {}
+  constructor(private httpClient: HttpClient) {}
+
+  ngOnInit() {
+    // this.getUsers();
+  }
+
+  async ionViewWillEnter() {
+    this.getUsers().subscribe((data) => {
+      this.users = data.results;
+      console.log(
+        '🚀 ~ file: list.page.ts:44 ! ionViewWillEnter ~ users',
+        this.users
+      );
+      this.loading = false;
+    });
+  }
+
+  getUsers(): Observable<any> {
+    return this.httpClient.get('https://randomuser.me/api?results=10').pipe(
+      catchError((error) => {
+        console.log(error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  clearList() {}
 }

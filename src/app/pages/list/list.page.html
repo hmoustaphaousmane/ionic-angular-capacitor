@@ -5,6 +5,15 @@
     </ion-buttons>
     <ion-title>List</ion-title>
   </ion-toolbar>
+
+  <ion-toolbar color="success">
+    <ion-searchbar />
+    <ion-buttons slot="end">
+      <ion-button (click)="clearList()">
+        <ion-icon slot="icon-only" icon="trash-bin-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -13,5 +22,25 @@
       <ion-title size="large">List</ion-title>
     </ion-toolbar>
   </ion-header>
-  <p>List page content ...</p>
+
+  @for (user of users; track $index) {
+  <ion-card>
+    <ion-card-content class="ion-no-padding">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img [src]="user.picture.thumbnail" />
+        </ion-avatar>
+
+        <ion-label>
+          {{user.name.first}} {{user.name.last}}
+          <p>{{user.email}}</p>
+        </ion-label>
+
+        <ion-chip color="primary">
+          <ion-label>{{user.nat}}</ion-label>
+        </ion-chip>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  }
 </ion-content>

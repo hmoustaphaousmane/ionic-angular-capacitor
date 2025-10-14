@@ -8,7 +8,8 @@ import {
   personCircleOutline,
   checkmarkDoneOutline,
   triangle,
-  ellipse
+  ellipse,
+  trashBinOutline,
 } from 'ionicons/icons';
 
 @Component({
@@ -18,6 +19,14 @@ import {
 })
 export class AppComponent {
   constructor() {
-    addIcons({ logInOutline, logOutOutline, personCircleOutline, checkmarkDoneOutline, triangle, ellipse });
+    addIcons({
+      logInOutline,
+      logOutOutline,
+      personCircleOutline,
+      checkmarkDoneOutline,
+      triangle,
+      ellipse,
+      trashBinOutline,
+    });
   }
 }
