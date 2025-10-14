@@ -17,6 +17,8 @@ import {
   IonLabel,
   IonAvatar,
   IonChip,
+  AlertController,
+  ToastController,
 } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
@@ -50,11 +52,13 @@ export class ListPage implements OnInit {
   users: any[] = [];
   loading: boolean = true;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
+  ) {}
 
-  ngOnInit() {
-    // this.getUsers();
-  }
+  ngOnInit() {}
 
   async ionViewWillEnter() {
     this.getUsers().subscribe((data) => {
@@ -76,5 +80,39 @@ export class ListPage implements OnInit {
     );
   }
 
-  clearList() {}
+  clearList() {
+    this.presentAlert();
+  }
+
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'Confirm',
+      message: 'Are you sure you want to delete all users?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.users = [];
+            this.showToast('All users deleted', 'danger');
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async showToast(message: string, color: string) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2500,
+      position: 'bottom',
+      color,
+    });
+    await toast.present();
+  }
 }
