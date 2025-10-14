@@ -23,6 +23,36 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content />
+  </ion-refresher>
+
+  @if (loading) {
+  @for (item of items; track $index) {
+  <ion-card>
+
+    <ion-card-content class="ion-no-padding">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <ion-skeleton-text />
+        </ion-avatar>
+
+        <ion-label>
+          <ion-skeleton-text animated style="width: 150px"></ion-skeleton-text>
+
+          <p>
+            <ion-skeleton-text />
+          </p>
+        </ion-label>
+
+        <ion-chip color="primary">
+        </ion-chip>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  }
+  }
+
   @for (user of users; track $index) {
   <ion-card>
     <ion-card-content class="ion-no-padding">

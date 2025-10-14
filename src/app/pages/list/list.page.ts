@@ -19,6 +19,9 @@ import {
   IonChip,
   AlertController,
   ToastController,
+  IonRefresher,
+  IonRefresherContent,
+  IonSkeletonText,
 } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
@@ -46,11 +49,15 @@ import { catchError, Observable, throwError } from 'rxjs';
     IonLabel,
     IonAvatar,
     IonChip,
+    IonRefresher,
+    IonRefresherContent,
+    IonSkeletonText,
   ],
 })
 export class ListPage implements OnInit {
   users: any[] = [];
   loading: boolean = true;
+  items: any[] = [...Array(10)];
 
   constructor(
     private httpClient: HttpClient,
@@ -114,5 +121,16 @@ export class ListPage implements OnInit {
       color,
     });
     await toast.present();
+  }
+
+  doRefresh(event: any) {
+    this.getUsers().subscribe((data) => {
+      this.users = data.results;
+      console.log(
+        '🚀 ~ file: list.page.ts:127 ! doRefresh ~ refreshed users',
+        this.users
+      );
+      event.target.complete(); // ends refresher animation
+    });
   }
 }
