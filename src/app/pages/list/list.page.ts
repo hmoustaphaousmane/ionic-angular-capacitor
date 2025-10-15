@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -22,6 +22,7 @@ import {
   IonRefresher,
   IonRefresherContent,
   IonSkeletonText,
+  IonModal,
 } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
@@ -52,12 +53,18 @@ import { catchError, Observable, throwError } from 'rxjs';
     IonRefresher,
     IonRefresherContent,
     IonSkeletonText,
+    IonModal,
   ],
 })
 export class ListPage implements OnInit {
+  @ViewChild(IonModal) modal!: IonModal;
+
   users: any[] = [];
   loading: boolean = true;
   items: any[] = [...Array(10)];
+  selectedUser: any = null;
+  presentingElement: any;
+  activeSegment: string = 'details';
 
   constructor(
     private httpClient: HttpClient,
@@ -132,5 +139,14 @@ export class ListPage implements OnInit {
       );
       event.target.complete(); // ends refresher animation
     });
+  }
+
+  openModal(user: any) {
+    this.selectedUser = user;
+  }
+
+  async closeModal() {
+    await this.modal.dismiss(null, 'cancel');
+    this.selectedUser = null;
   }
 }
