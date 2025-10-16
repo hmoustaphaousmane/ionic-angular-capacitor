@@ -10,6 +10,7 @@ import {
   triangle,
   ellipse,
   trashBinOutline,
+  addOutline,
 } from 'ionicons/icons';
 
 @Component({
@@ -27,6 +28,7 @@ export class AppComponent {
       triangle,
       ellipse,
       trashBinOutline,
+      addOutline
     });
   }
 }

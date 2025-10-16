@@ -23,6 +23,8 @@ import {
   IonRefresherContent,
   IonSkeletonText,
   IonModal,
+  IonFab,
+  IonFabButton,
 } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
@@ -54,16 +56,18 @@ import { catchError, Observable, throwError } from 'rxjs';
     IonRefresherContent,
     IonSkeletonText,
     IonModal,
+    IonFab,
+    IonFabButton,
   ],
 })
 export class ListPage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
+  presentingElement!: HTMLElement | null;
 
   users: any[] = [];
   loading: boolean = true;
   items: any[] = [...Array(10)];
   selectedUser: any = null;
-  presentingElement: any;
   activeSegment: string = 'details';
 
   constructor(
@@ -72,7 +76,9 @@ export class ListPage implements OnInit {
     private toastCtrl: ToastController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.presentingElement = document.querySelector('.ion-page');
+  }
 
   async ionViewWillEnter() {
     this.getUsers().subscribe((data) => {
