@@ -25,6 +25,9 @@ import {
   IonModal,
   IonFab,
   IonFabButton,
+  IonSegment,
+  IonSegmentButton,
+  IonDatetime
 } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
@@ -58,7 +61,10 @@ import { catchError, Observable, throwError } from 'rxjs';
     IonModal,
     IonFab,
     IonFabButton,
-  ],
+    IonSegment,
+    IonSegmentButton,
+    IonDatetime
+],
 })
 export class ListPage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
@@ -154,5 +160,9 @@ export class ListPage implements OnInit {
   async closeModal() {
     await this.modal.dismiss(null, 'cancel');
     this.selectedUser = null;
+  }
+
+  segmentChanged(e: any) {   
+    this.activeSegment = e.detail.value;
   }
 }
