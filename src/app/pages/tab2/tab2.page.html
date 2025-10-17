@@ -1,16 +1,29 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar color="secondary">
     <ion-buttons slot="start">
       <ion-menu-button />
     </ion-buttons>
     <ion-title>Tab 2</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<!-- <ion-content [fullscreen]="true" class="ion-padding"> -->
+<!-- <ion-header collapse="condense">
     <ion-toolbar color="secondary">
       <ion-title size="large">Tab 2</ion-title>
     </ion-toolbar>
-  </ion-header>
-</ion-content>
+  </ion-header> -->
+
+<ion-card #card>
+  <ion-card-content>Card</ion-card-content>
+</ion-card>
+
+<ion-button (click)="play()">Play</ion-button>
+<ion-button (click)="pause()">Pause</ion-button>
+<ion-button (click)="stop()">Stop</ion-button>
+
+<!-- <ion-button color="success" class="ion-margin" (click)="play()" shape="round">
+  <ion-icon slot="start" name="add"></ion-icon>
+  Join Us
+</ion-button> -->
+<!-- </ion-content> -->
